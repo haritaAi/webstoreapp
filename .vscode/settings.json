@@ -1,0 +1,12 @@
+{
+    "emmet.preferences": {
+
+
+    
+    },
+    "emmet.showAbbreviationSuggestions": false,
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact",
+        "vue-html": "html"
+    }
+}

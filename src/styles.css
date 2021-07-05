@@ -1,0 +1,29 @@
+.btn,
+.jumbotron,
+.nav :hover {
+  border-radius: 0px;
+}
+
+body {
+  background: #323b3d;
+}
+/* footer{
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  left : 0px;
+} */
+.btn-circle {
+  border-radius: 20px;
+  background-color: rgb(78, 156, 111);
+}
+.btn-circle :hover {
+  background-color: rgb(24, 68, 42);
+}
+.fixed-side {
+  position :fixed;
+  
+}
+.bg-transparent{
+  background-color: rgba(0, 0, 0, 0);
+}
