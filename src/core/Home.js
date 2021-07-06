@@ -85,7 +85,7 @@ const loadProducts = async () => {
        
 useEffect(() => {
 
-  loadProducts();     
+//   loadProducts();     
  
    loadCart();
   
