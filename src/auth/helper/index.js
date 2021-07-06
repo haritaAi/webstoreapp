@@ -5,6 +5,7 @@ export const signup = user => {
     console.log("Route for signup :",`${API}/signup`);
     return  fetch(`${API}/signup`,{
         method:"POST",
+        mode : 'no-cors',
         headers : {
             Accept : "application/json",
             "Content-Type" : "application/json"
