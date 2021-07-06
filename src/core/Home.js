@@ -41,13 +41,15 @@ const loadProducts = async () => {
 
     await    getAllProducts()
                 .then(data => {
-                    if(data.error){
+                    if(data)
+                    {  if(data.error){
                         setError(data.error);
-                    }
+                             }
                     else {
                         setProducts(data);
                         
-                    }
+                             }
+                }
                 });
     
                 
