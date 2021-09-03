@@ -66,7 +66,7 @@ export const deleteCategory = (categoryId,userId,token) => {
 
 export const createProduct = (userId,token,product) => {
     console.log("TOken in API ;", token);
-          return fetch(`${API}products/create/${userId}`,{
+          return fetch(`${API}/products/create/${userId}`,{
             method : "POST",
             headers : {
                 Accept : "application/json",             
