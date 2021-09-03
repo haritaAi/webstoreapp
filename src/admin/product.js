@@ -276,7 +276,7 @@ const populateProducts = async () => {
 
                             <div className="form-group">
                             <label className="text-light">stock</label>
-                            <input value ={parseInt(stock)} 
+                            <input value ={stock} 
                                    onChange = {handleChange("stock")}
                                    placeholder = "stock"
                                    className = "form-control" 
