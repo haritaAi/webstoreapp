@@ -38,7 +38,7 @@ export default function Home() {
       
   };
 const loadProducts = async () => {
-
+  console.log("in loadProducts");
     await    getAllProducts()
                 .then(data => {
                     if(data)
@@ -57,7 +57,7 @@ const loadProducts = async () => {
 
  const renderProductCards = () => {
  
-         
+         console.log("In renderProductsCards");
       
     return(
         <div className = " d-flex flex-row  row">
@@ -85,7 +85,7 @@ const loadProducts = async () => {
        
 useEffect(() => {
 
-//   loadProducts();     
+  loadProducts();     
  
    loadCart();
   

@@ -3,7 +3,7 @@ import {API} from '../../backend';
 
 const ImageHelper = ({product}) => {
 
-    const imageurl = product? `${API}products/photo/${product._id}`
+    const imageurl = product? `${API}/products/photo/${product._id}`
     : `https://images.pexels.com/photos/1408221/pexels-photo-1408221.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500`;
 
   

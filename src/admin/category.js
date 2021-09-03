@@ -66,15 +66,15 @@ const CategoryDashboard = () => {
             event.preventDefault();
             setError("");
             setSuccess(false);
-         
+        
             //backend request
             createCategory(user._id,token,{name})
                     .then(data => {
-                                    if(data.error){
+                           if(data.error){
                                       setError(true);
                                       setName("");
                                     }
-                                    else {
+                           else {
                                       setError("");
                                       setSuccess(true);
                                       setName("");
@@ -194,7 +194,8 @@ const CategoryDashboard = () => {
                          {categoryForm()}                           
                       </div>
                       <div className="col-md-2 ">
-                      <div className = " my-5  "> <AdminMenu pathname = "category" onCreate = {handleCreate} onUpdate = {handleUpdate} onDelete = {handleDelete}/>  </div>    
+                      <div className = " my-5  "> 
+                      <AdminMenu pathname = "category" onCreate = {handleCreate} onUpdate = {handleUpdate} onDelete = {handleDelete}/>  </div>    
                         </div>
                 </div>
                 

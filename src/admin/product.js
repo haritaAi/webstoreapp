@@ -67,7 +67,7 @@ const ProductDashboard = () => {
                 });
       
    };
-    const populateCategories = async () => {
+const populateCategories = async () => {
 
         const categoryList = await  getCategory();  
        
@@ -78,11 +78,11 @@ const ProductDashboard = () => {
       let cat =  categories.find(c => c._id === input );   
       return cat.name;
      };
-    const populateProducts = async () => {
+const populateProducts = async () => {
               
          const productList = await  getAllProducts();  
       
-         setProducts(productList);     
+         setProducts(productList);    
        
          populateCategories();
          
@@ -90,28 +90,36 @@ const ProductDashboard = () => {
    
   const renderProducts = () => {
 
-   
-    if (products.length > 0)
-    return  (   <ul className = "list-group">
-                     { products.map(product => 
-                                   (<li className = "d-flex flex-row   btn btn-primary rounded  list-group-item text-dark text-right"
-                                        key = {product._id}
-                                        onClick ={() => onProductSelect(product._id)}>                                                                                 
-                                           <div  style = {{maxWidth : "150px"  , maxHeight : "100px"}}> 
-                                              <ImageHelper product = {product} /></div>                                         
-                                          <div className = "justify-content-right">
-                                             <ul className ="list-unstyled">
-                                                 <li>{product.name}</li>
-                                                 <li>{product.photo}</li>
-                                                 <li>{product.description}</li>
-                                                 <li>stock : {product.stock}  price : {product.price}</li>
-                                                 <li>category : {product.category.name}</li>
-                                             </ul>
-                                             
-                                               </div>
+   console.log("Products arre:", products);
+    
+      return  ( 
+       <div> 
+        <ul className = "list-group">
+         {(products.length >0 ) && products.map(product => 
+                (<li   key = {product._id} 
+                      className = "d-flex flex-row  btn btn-primary rounded  list-group-item text-dark text-right"
+                      onClick ={() => onProductSelect(product._id)}>                  
+                                                                                     
+                              <div  style = {{maxWidth : "150px"  , maxHeight : "100px"}}> 
+                                   <ImageHelper product = {product} />
+                               </div>                                         
+                            <div className = "justify-content-right">
+                                <ul className ="list-unstyled">
+                                    <li  key = {product._id+(Math.random()*10)}>{product.name}</li>
+                                    <li  key = {product._id+(Math.random()*6)}>{product.description}</li>
+                                    <li  key = {product._id+(Math.random()*7)}>stock : {product.stock}  price : {product.price}</li>
+                                    <li  key = {product._id+(Math.random()*5)}>category : {product.category.name}</li>
+                                </ul>
+                                
+                            </div>
                                         
-                                            </li>)
-                        )}</ul>  )    ;    
+                  </li>)
+              )}
+        </ul>
+        </div> 
+           ) ; 
+      
+   
   };
   
 
@@ -215,7 +223,7 @@ const ProductDashboard = () => {
 
     const productForm = () => {
         return (   
-           <form >
+           <form>
               
           <div className = "row">
               <div className = "col-md-4  bg-dark    py-3">  
@@ -225,74 +233,74 @@ const ProductDashboard = () => {
                 
              <div className = "col-md-6 offset-md-4 fixed-side">  
              <form >
-             <h3 className = " text-light my-3">Product Form</h3>
-                    <div className="form-group">
-                     <label className="text-light">Product id</label>
-                     <input readOnly 
-                            value={_id} 
-                            className = "form-control" 
-                            type="text"/>
-                   </div>
-                   
-                    <div className="form-group">
-                        <label className="text-light">Product name</label>
-                        <input  value ={name} 
-                                onChange = {handleChange("name")} 
-                                placeholder="Name"
-                                className = "form-control" 
-                                type="text"/>
-                    </div>   
-                      
-                    <div className="form-group">
-                        <label className="text-light">Product Description</label>
-                        <input  value ={description}
-                                onChange = {handleChange("description")} 
-                                className = "form-control" 
-                                placeholder="Description"
-                                type="text"/>
-                    </div>   
-                    <div className="row">
-                       
-                        <div className="col-md-4">
-
-                            <div className="form-group">
-                            <label className="text-light">price</label>
-                            <input value ={price} 
-                                   onChange = {handleChange("price")}
-                                   placeholder="Price"
+                 <h3 className = " text-light my-3">Product Form</h3>
+                          <div className="form-group">
+                          <label className="text-light">Product id</label>
+                          <input readOnly 
+                                  value={_id} 
                                   className = "form-control" 
-                                  type="text"/>            
-                            </div>  
-                         </div>   
+                                  type="text"/>
+                        </div>
+                   
+                        <div className="form-group">
+                            <label className="text-light">Product name</label>
+                            <input  value ={name} 
+                                    onChange = {handleChange("name")} 
+                                    placeholder="Name"
+                                    className = "form-control" 
+                                    type="text"/>
+                        </div>   
+                      
+                        <div className="form-group">
+                            <label className="text-light">Product Description</label>
+                            <input  value ={description}
+                                    onChange = {handleChange("description")} 
+                                    className = "form-control" 
+                                    placeholder="Description"
+                                    type="text"/>
+                        </div>   
+
+                        <div className="row">                       
+                            <div className="col-md-4">
+
+                                <div className="form-group">
+                                <label className="text-light">price</label>
+                                <input value ={price} 
+                                      onChange = {handleChange("price")}
+                                      placeholder="Price"
+                                      className = "form-control" 
+                                      type="text"/>            
+                                </div>  
+                            </div>   
                          <div className="col-md-4">
 
                             <div className="form-group">
                             <label className="text-light">stock</label>
-                            <input value ={stock} 
+                            <input value ={parseInt(stock)} 
                                    onChange = {handleChange("stock")}
                                    placeholder = "stock"
                                    className = "form-control" 
                                    type="text"/>            
                             </div>  
                          </div> 
-                         <div className="col-md-4 rounded">
-                            <div className="form-group">
-                            <label className="text-light">category</label>
-                          
-                           <select  onChange = {handleChange("category")}
-                                   className = "form-control"
-                                   placeholder = "category" >
-                                     
-                                {_id && (<option selected>{findCategoryName(category)}</option>)}
-                                 { !_id && (<option>Select</option>)}
-                                {categories && categories.map((category,index) =>
-                                (  <option   key = {index} 
-                                            value = {category._id}>{category.name}</option>
-                                ))}
-                          </select>
-                            </div> 
-                           
-                         </div> 
+                          <div className="col-md-4 rounded">
+                                  <div className="form-group">
+                                  <label className="text-light">category</label>
+                                
+                                      <select  onChange = {handleChange("category")}
+                                              className = "form-control"
+                                              placeholder = "category" >
+                                                
+                                            {_id && (<option selected>{findCategoryName(category)}</option>)}
+                                            { !_id && (<option>Select</option>)}
+                                            {categories && categories.map((category,index) =>
+                                            (  <option   key = {index} 
+                                                        value = {category._id}>{category.name}</option>
+                                            ))}
+                                      </select>
+                                  </div> 
+                            
+                          </div> 
                      </div>  
                      <div className = "btn btn-success btn-block text-center" >
                      <input onChange = {handleChange("photo")}                                                   

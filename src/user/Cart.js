@@ -1,4 +1,4 @@
-import React, { useState,useEffect, Fragment} from 'react';
+import React, { useState,useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import { isAuthenticated } from '../auth/helper';
 import Base from '../core/Base';
@@ -56,36 +56,38 @@ const loadCart = async () => {
       loadCart();   
   },[]);
 
-   const productInCart = () => {
-    
-     return  (
-     
-      <ul className = "list-group">
-       {cart.map(product =>    
-        <li   key = {product._id +  Math.random()*100}    className = "  rounded  list-group-item text-dark text-right m-2" >                                                                              
-      
-           <div className = "float-left" style = {{maxWidth : "150px"  , maxHeight : "150px"}}> 
-           <ImageHelper product = {product} /></div>                                         
-           <div className = "ml-5 float-right">
-                   <ul className ="list-unstyled">
-                   <li>{product.name}</li>
-                   <li>{product.photo}</li>
-                   <li>{product.description}</li>
-                   <li>quantity :
-                               <span className = "btn  border mr-2" 
-                                       onClick = {()=> handleReduceQuantity(product)}> -</span> 
-                               {product.quantity}
-                               <span className = "btn  border ml-2" 
-                                       onClick = {() =>handleIncreaseQuantity(product)}>+ </span>
-                       </li>
-                   <li>price : {product.price}</li>
-                   
-                   <li className ="float-right btn btn-sm border border-danger text-dark" 
-                                   onClick = {() =>removeProduct(product)}><i class="fa fa-trash-o " aria-hidden="true"></i></li>
-                   </ul>                     
-               </div>
+const productInCart = () => {
+   
+  console.log("in ProductInCart()")
+  
+     return  (    
+    <ul className = "list-group">
+       {(cart.length > 0) && cart.map(product =>    
+            <li  key = {product.id + Math.random()*6} className = "rounded  list-group-item text-dark text-right m-2" >                                                                              
           
-        </li>)}
+              <div className = "float-left" style = {{maxWidth : "150px"  , maxHeight : "150px"}}> 
+                  <ImageHelper product = {product} />
+              </div>                                         
+              <div className = "ml-5 float-right">
+                      <ul className ="list-unstyled">
+                      <li>{product.name}</li>
+                      {/* <li>{product.photo}</li> */}
+                      <li>{product.description}</li>
+                      <li>quantity :
+                                  <span className = "btn  border mr-2" 
+                                          onClick = {()=> handleReduceQuantity(product)}> -</span> 
+                                  {product.quantity}
+                                  <span className = "btn  border ml-2" 
+                                          onClick = {() =>handleIncreaseQuantity(product)}>+ </span>
+                          </li>
+                      <li>price : {product.price}</li>
+                      
+                      <li className ="float-right btn btn-sm border border-danger text-dark" 
+                                      onClick = {() =>removeProduct(product)}><i className ="fa fa-trash-o " aria-hidden="true"></i></li>
+                      </ul>                     
+                </div>
+              
+            </li>)}
         </ul>
  )
 
@@ -93,7 +95,7 @@ const loadCart = async () => {
 
    
 const orderSummery = () => {
-  
+  console.log("In OrderSummery function")
 
   const  orderTable =createOrderSummery();
  
@@ -144,31 +146,28 @@ const orderSummery = () => {
 
     return (
         <Base title = "Cart" description = "your onestop shop!" className = "container  m-auto">
-      <div className="row bg-white rounded">
-               <div className = "col" >
-                  {productInCart()}
-                       
-               </div>
-               <div className="col font-weight-bold m-3 ">
-                  Order Summary
-                <div className="font-weight-normal">
-                  {orderSummery()}
-                </div>
-                <div>
-                <div className = "flot-left d-inline rounded">
-            {(cart.length > 0 ) && (<Link className=" btn btn-success text-center text-white " 
-                                         to = {isAuthenticated()?"/checkout":"/signin"}>
-                                               confirm and checkout</Link>) }
-        </div>
-        <div className = "float-right rounded">
-            <Link className = "btn btn-success text-center text-white float-right" to = "/">continue shopping</Link> 
+            <div className="row bg-white rounded">
+                    <div className = "col" >
+                        {productInCart()}                            
+                    </div>
+                    <div className="col font-weight-bold m-3 ">
+                        Order Summary
+                            <div className="font-weight-normal">
+                              {orderSummery()}
+                            </div>
+                             <div>
+                                  <div className = "flot-left d-inline rounded">
+                                          {(cart.length > 0 ) && (<Link className=" btn btn-success text-center text-white " 
+                                                            to = {isAuthenticated()?"/checkout":"/signin"}>
+                                                                  confirm and checkout</Link>) }
+                                  </div>
+                                  <div className = "float-right rounded">
+                                      <Link className = "btn btn-success text-center text-white float-right" to = "/">continue shopping</Link> 
 
-        </div>
-                </div>
-               </div>
-      </div>
-        
-                   
+                                  </div>
+                             </div>
+                    </div>
+            </div>                    
           
             
         </Base>

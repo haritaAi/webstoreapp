@@ -17,7 +17,7 @@ const Card = ({product,onSelect}) => {
      const showAddToCart = () => {
             
           return ( (<button   onClick = {()=> onSelect(product)}
-          className = "btn btn-block btn-outline-success mt-2 mb-2">
+          className = "btn btn-block btn-outline-info mt-2 mb-2">
            Add to Cart
           </button>) )
      } 
@@ -35,10 +35,10 @@ const Card = ({product,onSelect}) => {
                 
                   {getARedirect(redirect)}
                   <ImageHelper product = {product}/>
-                 <p className="lead bg-success font-weight-normal text-wrap">
+                 <p className="lead bg-info font-weight-normal text-wrap">
                     {product.description}
                  </p>
-                 <p className="btn btn-success rounded btn-sm px-4">{product.price}</p>
+                 <p className="btn btn-info rounded btn-sm px-4">{product.price}</p>
                 <div className="row">
                     <div className="col-12">
                        {showAddToCart() }

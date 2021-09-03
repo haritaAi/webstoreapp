@@ -3,9 +3,7 @@ import Base from '../core/Base';
 import {Link} from 'react-router-dom';
 import { calculateBillAmount, createOrderSummery, loadCart } from '../core/helper/cartHelper';
 import StripeCheckOutButton from 'react-stripe-checkout';
-import StripeCheckOut from '../core/stripecheckout' ;
 import {API} from './../backend';
-import {createOrder} from './../core/helper/orderhelper';
 import { isAuthenticated } from '../auth/helper';
 import PaymentB from '../core/paymentB';
  
@@ -94,11 +92,11 @@ const orderSummery = () => {
                     description = ""
                     className = "container  m-auto" cartCount = {cart.length} >
                        {cart.length > 0 && <div className = "row text-white mt-5 ">
-                                <div className="col-4 bg-white rounded ">
+                                <div className="col bg-white rounded ">
                                 {orderSummery()}   
                               
                                 </div>
-                              <div className="col-8 rounded  bg-white text-center ">
+                              <div className="col rounded  bg-white text-center ">
                               
                                 <br/>
                               <StripeCheckOutButton

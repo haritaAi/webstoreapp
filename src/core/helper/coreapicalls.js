@@ -3,8 +3,10 @@ import {API} from '../../backend';
 
 
 export const getAllProducts = () => {
+  console.log("API :",API)
     return fetch(`${API}/products`,{
         method : "GET",
+        
                   
         }).then(response =>  {return response.json()})
                    

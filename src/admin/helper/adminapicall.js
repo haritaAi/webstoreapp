@@ -1,18 +1,21 @@
+import { isAuthenticated } from '../../auth/helper';
 import {API} from '../../backend';
 
 //Category calls
-export const createCategory = (userId,token ,category)  => {
-
-    return fetch(`${API}category/create/${userId}`,{
-        method : "POST",
+export const createCategory = (userId,token,category)  => {
+   
+    return fetch(`${API}/category/create/${userId}`,{
+        method : "POST",            
         headers : {
-            Accept : "application/json",
-            "Content-Type" : "application/json",
-            Authorization : `Bearer ${token}`
+            Accept : "application/json",                  
+            'Content-Type': "application/json",
+            Authorization : `Bearer ${token}`,
+            
         },
-        body: JSON.stringify(category)
+        body:JSON.stringify(category)
       })
             .then(response => {
+                console.log("Response ::",response)
                 return response.json();
             })
             .catch(err => console.log(err));
@@ -33,14 +36,14 @@ export const getCategory = () => {
 export const updateCategory = (categoryId, userId,token,category) => {
 
         //    console.log(`${API}category/${categoryId}/${userId}`);
-        return  fetch(`${API}category/${categoryId}/${userId}`,{
+        return  fetch(`${API}/category/${categoryId}/${userId}`,{
             method : "PUT",
             headers : {
                 Accept : "application/json",
                 "Content-Type" : "application/json",
                 Authorization : `Bearer ${token}`
             },
-            body: JSON.stringify(category)         
+            body:JSON.stringify(category)       
             }).then(response => {
                  console.log("Response :",response);
                  return response.json()} )                                      
@@ -49,7 +52,7 @@ export const updateCategory = (categoryId, userId,token,category) => {
 };
 
 export const deleteCategory = (categoryId,userId,token) => {
-        return fetch(`${API}category/${categoryId}/${userId}`,{
+        return fetch(`${API}/category/${categoryId}/${userId}`,{
         method : "DELETE",
         headers : {
             Accept : "application/json",
@@ -88,14 +91,14 @@ export const getAllProducts = () => {
 };
 
 export const getProduct = (productId) => {
-      return fetch(`${API}products/${productId}`,{
+      return fetch(`${API}/products/${productId}`,{
           method : "GET"
       }).then(response =>  {return response.json()} )
         .catch(err => console.log(err));
 };
 
 export const updateProduct = (productId,userId,token,product) => {
-    return fetch(`${API}products/${productId}/${userId}`,{
+    return fetch(`${API}/products/${productId}/${userId}`,{
         method : "PUT",
         headers : {
                 Accept : "application/json",
@@ -111,7 +114,7 @@ export const updateProduct = (productId,userId,token,product) => {
 
 export const deleteProduct = (productId,userId,token) => {
   
-    return fetch(`${API}products/${productId}/${userId}`,{
+    return fetch(`${API}/products/${productId}/${userId}`,{
         method : "DELETE",
         headers : {         
             Authorization : `Bearer ${token}`
